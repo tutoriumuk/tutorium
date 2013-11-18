@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en-GB' xml:lang='en-GB' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>Samples</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css" />
+  </head>
+  <body>
+    <h1>Samples:</h1>
+
+    {% if sample_list %}
+   
+    <table>
+      <tr>
+        <th>label</th>
+        <th>date</th>
+        <th>strain</th>
+        <th>person</th>
+        <th>notes</th>
+      </tr>
+      {% for sample in sample_list %}
+      <tr>
+        <td>{{ sample.label }}</td>
+        <td>{{ sample.date }}</td>
+        <td>{{ sample.strain.name }}</td>
+        <td>{{ sample.person.lastname }}</td>
+        <td>{{ sample.notes }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    {% else %}
+
+    <p>There are no samples defined.</p>
+
+    {% endif %}
+
+    <hr>
+    <h2>New Sample</h2>
+
+    <form action="sample" method="post">
+      <table>
+        <tr>
+          <td>date: </th>
+          <td><input type="text" name="date" /></td>
+        </tr>
+	<tr>
+	  <td>label: </th>
+	  <td><input type="text" name="label" /></td>
+	</tr>
+        <tr>
+          <td>strain: </th>
+          <td>
+	    <select name="strain_id">
+	      {% for strain in strain_list %}
+	      <option value={{ strain.id }}>{{ strain.name }}</option>
+	      {% endfor %}
+	    </select>
+	  </td>
+        </tr>
+        <tr>
+          <td>person: </th>
+          <td>
+            <select name="person_id">
+              {% for person in person_list %}
+              <option value={{ person.id }}>{{ person.lastname }}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td>notes: </td>
+          <td><textarea rows="5" cols="50" name="notes"></textarea></td>
+        </tr>
+      </table>
+      <p><input type="submit"></p>
+      <p><input type="reset"</p>
+    </form>
+
+
+  </body>
+</html>

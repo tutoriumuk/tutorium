@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en-GB' xml:lang='en-GB' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>Freezer contents</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css" />
+    <script src="/static/js/raphael-min.js"></script>
+    <script src="/static/js/g.raphael-min.js"></script>
+    <script src="/static/js/g.pie-min.js"></script>
+    <script>
+      window.onload = function () {
+        var r = Raphael("pie");
+        r.piechart(100, 100, 100, [55, 5, 13, 32], { legend: ["a", "b", "c", "d"]});
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Freezer contents:</h1>
+
+    {% if sample_list %}
+
+    <div id="pie"> </div>
+
+    <table>
+      <tr>
+	<th>label</th>
+	<th>date</th>
+	<th>strain</th>
+	<th>person</th>
+	<th>notes</th>
+      </tr>
+      {% for sample in sample_list %}
+      <tr>
+        <td>{{ sample.label }}</td>
+        <td>{{ sample.date }}</td>
+        <td>{{ sample.strain.name }}</td>
+        <td>{{ sample.person.firstname }}</td>
+        <td>{{ sample.notes }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    {% else %}
+
+    <p>The freezer is empty.</p>
+
+    {% endif %}
+
+  </body>
+</html>

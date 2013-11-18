@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en-GB' xml:lang='en-GB' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>People</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css" />
+  </head>
+  <body>
+    <h1>People:</h1>
+
+    {% if tutor_list %}
+
+    <table>
+      <tr>
+	<th>University</th>
+	<th>Degree</th>
+	<th>Name</th>
+      </tr>
+      {% for tutor in tutor_list %}
+      <tr>
+        <td>{{ tutor.university }}</td>
+        <td>{{ tutor.degree }}</td>
+        <td>{{ tutor.name }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    {% else %}
+
+    <p>No people are defined.</p>
+
+    {% endif %}
+
+    <hr>
+    <h2>New Person</h2>
+
+    <form action="SearchTutor" method="post">{% csrf_token %}
+      <table>
+	<tr>
+	  <td>firstname: </th>
+	  <td><input type="text" name="university" /></td>
+	</tr>
+        <tr>
+          <td>lastname: </th>
+          <td><input type="text" name="degree" /></td>
+        </tr>
+        <tr>
+          <td>email: </th>
+          <td><input type="text" name="name" /></td>
+        </tr>
+      </table>
+      <p><input type="submit"></p>
+      <p><input type="reset"</p>
+    </form>
+
+
+  </body>
+</html>

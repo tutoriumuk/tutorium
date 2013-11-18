@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en-GB' xml:lang='en-GB' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>Strains</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css" />
+  </head>
+  <body>
+    <h1>Strains:</h1>
+
+    {% if strain_list %}
+   
+    <table>
+      <tr>
+	<th>name</th>
+	<th>species</th>
+	<th>mutation</th>
+      </tr>
+      {% for strain in strain_list %}
+      <tr>
+        <td>{{ strain.name }}</td>
+        <td>{{ strain.species.name }}</td>
+        <td>{{ strain.mutation }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    {% else %}
+
+    <p>There are no strains defined.</p>
+
+    {% endif %}
+
+    <hr>
+    <h2>New Strain</h2>
+
+    <form action="strain" method="post">
+      <table>
+	<tr>
+	  <td>name: </th>
+	  <td><input type="text" name="name" /></td>
+	</tr>
+        <tr>
+          <td>species: </th>
+          <td>
+	    <select name="species_id">
+	      {% for species in species_list %}
+	      <option value={{ species.id }}>{{ species.name }}</option>
+	      {% endfor %}
+	    </select>
+	  </td>
+        </tr>
+        <tr>
+          <td>mutation: </th>
+          <td><input type="text" name="mutation" /></td>
+        </tr>
+      </table>
+      <p><input type="submit"></p>
+      <p><input type="reset"</p>
+    </form>
+
+
+  </body>
+</html>

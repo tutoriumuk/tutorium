@@ -1,0 +1,26 @@
+body {
+    font-size: 1em;
+    color: black;
+    background-color: #eeeeee;
+    font-family: arial, helvetica;
+    margin: 2em;
+}
+
+h1 {
+    color: #336633;
+}
+
+th {
+    color: #333388;
+    text-align: left;
+    width: 200px;
+}
+
+td {
+    background-color: #dddddd;
+}
+
+#pie {
+    width: 250px; 
+    height: 250px;
+}
