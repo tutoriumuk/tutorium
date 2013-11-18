@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Django settings for mysite project.
+=======
+# Django settings for tutorium project.
+>>>>>>> 110545c1a4e282153f9d455e4b2b613dcf160f21
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -11,11 +15,19 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
+<<<<<<< HEAD
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'tutoriumUK$db',                      # Or path to database file if using sqlite3.
         'USER': 'tutoriumUK',                      # Not used with sqlite3.
         'PASSWORD': 'doordonot91',                  # Not used with sqlite3.
         'HOST': '127.0.0.1',                      # Set to empty string for localhost. Not used with sqlite3.
+=======
+        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '',                      # Or path to database file if using sqlite3.
+        'USER': '',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+>>>>>>> 110545c1a4e282153f9d455e4b2b613dcf160f21
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -31,7 +43,11 @@ ALLOWED_HOSTS = []
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
+<<<<<<< HEAD
 TIME_ZONE = 'Europe/London'
+=======
+TIME_ZONE = 'America/Chicago'
+>>>>>>> 110545c1a4e282153f9d455e4b2b613dcf160f21
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -49,18 +65,30 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
+<<<<<<< HEAD
 MEDIA_ROOT = '/home/tutoriumUK/mysite/static'
+=======
+MEDIA_ROOT = '/home/A1ultimA/tutorium/media'
+>>>>>>> 110545c1a4e282153f9d455e4b2b613dcf160f21
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+<<<<<<< HEAD
 MEDIA_URL = '/static/'
+=======
+MEDIA_URL = '/media/'
+>>>>>>> 110545c1a4e282153f9d455e4b2b613dcf160f21
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
+<<<<<<< HEAD
 STATIC_ROOT = '/home/tutoriumUK/mysite/static'
+=======
+STATIC_ROOT = '/home/A1ultimA/tutorium/static'
+>>>>>>> 110545c1a4e282153f9d455e4b2b613dcf160f21
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -87,7 +115,11 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
+<<<<<<< HEAD
 SECRET_KEY = 'qv-mor=t$nbqjx0e$zge$cc=f7h0tlhw)vith2=94+*c!#+u6='
+=======
+SECRET_KEY = 'ogzbmi_8tq823^o(^2fsh)u^(vil)5hi50+y-wy)3eo8*3ib8x'
+>>>>>>> 110545c1a4e282153f9d455e4b2b613dcf160f21
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -104,7 +136,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
+<<<<<<< HEAD
 ROOT_URLCONF = 'mysite.urls'
+=======
+ROOT_URLCONF = 'tutorium.urls'
+>>>>>>> 110545c1a4e282153f9d455e4b2b613dcf160f21
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -119,7 +155,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'tutoriumuk.freezer',
+=======
+>>>>>>> 110545c1a4e282153f9d455e4b2b613dcf160f21
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
