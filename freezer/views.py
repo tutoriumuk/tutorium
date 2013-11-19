@@ -1,18 +1,21 @@
 #from django.http import HttpResponse
 from django.shortcuts import render_to_response,RequestContext
-from mysite.freezer.models import *
+from tutorium.freezer.models import *
 
 
-def SearchTutor(request):
+def recruitForm(request):
     if request.method  == 'POST':
         data = request.POST
         t = tutor(
-             university = data['university'],
-             degree = data['degree'],
-             name = data['name']
+            firstname = data['firstname'],
+            lastname = data['lastname'],
+            email = data['email']
+            #phone = data['phone'],
+            #university = data['university'],
+            #degree = data['degree'],
             )
         t.save()
-    tutor_list = tutor.objects.all().order_by('name')
+    tutor_list = tutor.objects.all().order_by('firstname')
     return render_to_response('person.html', {'tutor_list': tutor_list},context_instance=RequestContext(request))
 
 

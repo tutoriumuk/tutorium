@@ -21,14 +21,14 @@ from django.db import models
 #          Core models          #
 #################################
 
-class location(models.Model): 
+class location(models.Model):
 	postcode		= models.CharField(max_length=7,unique=True)
 	area			= models.CharField(max_length=250)
 
-class university(models.Model): 
+class university(models.Model):
 	name		= models.CharField(max_length=100,unique=True)
 
-class degree(models.Model): 
+class degree(models.Model):
 	name		= models.CharField(max_length=100,unique=True)
 
 class subject(models.Model):
@@ -60,18 +60,18 @@ class subject(models.Model):
 		(u'GCSE', u'GCSE'),
 	)
 
-	subject         = models.CharField(max_length=4, choices=SUBJECT_CHOICES)      
-	examboard       = models.CharField(max_length=10, choices=BOARD_CHOICES,null=True)      
-	keystage        = models.CharField(max_length=10, choices=KEYSTAGE_CHOICES)  
- 
-### Use form to prompt students to enter subject, board and keystage 
+	subject         = models.CharField(max_length=4, choices=SUBJECT_CHOICES)
+	examboard       = models.CharField(max_length=10, choices=BOARD_CHOICES,null=True)
+	keystage        = models.CharField(max_length=10, choices=KEYSTAGE_CHOICES)
+
+### Use form to prompt students to enter subject, board and keystage
 ### If the combo already exist then don't enter into subject tables
 ### Else insert new subject entry
 ### Get the ID of the entry as part of student record entry
 
 class student(models.Model):
 	firstname       = models.CharField(max_length=50)      # e.g. Hyuk-Jin
-	lastname        = models.CharField(max_length=50)      
+	lastname        = models.CharField(max_length=50)
 	# Implement Autocompletion and furture implementation of school table
 	address			= models.CharField(max_length=250)
 	school          = models.CharField(max_length=100)      # e.g. St. Mary
@@ -81,31 +81,31 @@ class student(models.Model):
 
 class tutor(models.Model):
 	firstname       = models.CharField(max_length=50)      # Andrew
-	lastname        = models.CharField(max_length=50)      # Brockman    
+	lastname        = models.CharField(max_length=50)      # Brockman
 
 	email    		= models.EmailField(max_length=255)
 	phone	    	= models.CharField(max_length=11, null=True)
-	trained         = models.BooleanField()      # e.g. TRUE // FALSE field used by us
-    
+	trained         = models.BooleanField(default=0, editable=False)      # e.g. TRUE // FALSE field used by us
+
 	ZONE_CHOICES = (
 		(u'Z1', u'Zone 1'),
 		(u'Z2', u'Zone 2'),
 		(u'Z3', u'Zone 3'),
 		(u'Z4', u'Zone 4'),
 	)
-	zone		    = models.CharField(max_length=2, choices=ZONE_CHOICES)
-    
-	university_key  = models.ForeignKey(university)
-	degree_key      = models.ForeignKey(degree)
-	location_key    = models.ForeignKey(location)
-	subject_key     = models.ManyToManyField(subject)
+	zone		    = models.CharField(max_length=2, choices=ZONE_CHOICES, null=True)
+
+	university_key  = models.ForeignKey(university, null=True)
+	degree_key      = models.ForeignKey(degree, null=True)
+	location_key    = models.ForeignKey(location, null=True)
+	subject_key     = models.ManyToManyField(subject, null=True)
 
 class lesson(models.Model):
 	vacancy         = models.NullBooleanField()      # open=FALSE, occupied=TRUE, expired=NULL
 	date            = models.DateField()                  #
-	starttime       = models.TimeField()      
-	endtime         = models.TimeField()      
-	
+	starttime       = models.TimeField()
+	endtime         = models.TimeField()
+
 	subject_key     = models.ForeignKey(subject)
 	location_key    = models.ForeignKey(location)
 	student_key     = models.ForeignKey(student)

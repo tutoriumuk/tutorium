@@ -11,15 +11,15 @@
 
     <table>
       <tr>
-	<th>University</th>
-	<th>Degree</th>
-	<th>Name</th>
+	<th>First Name</th>
+	<th>Last Name</th>
+	<th>Email</th>
       </tr>
       {% for tutor in tutor_list %}
       <tr>
-        <td>{{ tutor.university }}</td>
-        <td>{{ tutor.degree }}</td>
-        <td>{{ tutor.name }}</td>
+        <td>{{ tutor.firstname }}</td>
+        <td>{{ tutor.lastname }}</td>
+        <td>{{ tutor.email }}</td>
       </tr>
       {% endfor %}
     </table>
@@ -33,19 +33,19 @@
     <hr>
     <h2>New Person</h2>
 
-    <form action="SearchTutor" method="post">{% csrf_token %}
+    <form action="recruitForm" method="post">{% csrf_token %}
       <table>
 	<tr>
 	  <td>firstname: </th>
-	  <td><input type="text" name="university" /></td>
+	  <td><input type="text" name="firstname" /></td>
 	</tr>
         <tr>
           <td>lastname: </th>
-          <td><input type="text" name="degree" /></td>
+          <td><input type="text" name="lastname" /></td>
         </tr>
         <tr>
           <td>email: </th>
-          <td><input type="text" name="name" /></td>
+          <td><input type="text" name="email" /></td>
         </tr>
       </table>
       <p><input type="submit"></p>
