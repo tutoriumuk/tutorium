@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime, timedelta
 
 #################################
 #   Hierarchy of dependence     #
@@ -79,30 +80,29 @@ class student(models.Model):
 
 	location_key    = models.ForeignKey(location)
 
+	def __unicode__(self):
+		return "%s %s: %s" % (self.firstname, self.lastname, self.school)
+
+
 class tutor(models.Model):
 	firstname       = models.CharField(max_length=50)      # Andrew
 	lastname        = models.CharField(max_length=50)      # Brockman
-
 	email    		= models.EmailField(max_length=255)
 	phone	    	= models.CharField(max_length=11, null=True)
-	trained         = models.BooleanField(default=0, editable=False)      # e.g. TRUE // FALSE field used by us
+	trained         = models.BooleanField(default=0)      # e.g. TRUE // FALSE field used by us
+	university_key  = models.ForeignKey(university)
+	degree_key      = models.ForeignKey(degree)
+	location_key    = models.ForeignKey(location)
+	subject_key     = models.ManyToManyField(subject)
 
-	ZONE_CHOICES = (
-		(u'Z1', u'Zone 1'),
-		(u'Z2', u'Zone 2'),
-		(u'Z3', u'Zone 3'),
-		(u'Z4', u'Zone 4'),
-	)
-	zone		    = models.CharField(max_length=2, choices=ZONE_CHOICES, null=True)
+	def __unicode__(self):
+		return "%s %s: %s" % (self.firstname, self.lastname, self.university_key)
 
-	university_key  = models.ForeignKey(university, null=True)
-	degree_key      = models.ForeignKey(degree, null=True)
-	location_key    = models.ForeignKey(location, null=True)
-	subject_key     = models.ManyToManyField(subject, null=True)
+
 
 class lesson(models.Model):
 	vacancy         = models.NullBooleanField()      # open=FALSE, occupied=TRUE, expired=NULL
-	date            = models.DateField()                  #
+	date            = models.DateField()
 	starttime       = models.TimeField()
 	endtime         = models.TimeField()
 
@@ -110,3 +110,6 @@ class lesson(models.Model):
 	location_key    = models.ForeignKey(location)
 	student_key     = models.ForeignKey(student)
 	tutor_key       = models.ForeignKey(tutor)
+
+#	def __unicode__(self):
+#		return "%s %s: %s" % (self.subject, self.lastname, self.university_key)

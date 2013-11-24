@@ -1,9 +1,23 @@
-#from django.http import HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render_to_response,RequestContext
 from tutorium.freezer.models import *
+from tutorium.freezer.forms import RecruitForm
+
+def Recruit(request):
+    form = RecruitForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    tutor_list = tutor.objects.all().order_by('firstname')
+
+    if tutor_list:
+        return render_to_response('person.html', {'tutor_list': tutor_list},context_instance=RequestContext(request))
+    else:
+        return HttpResponse("<div>There is nothing</div>")
 
 
-def recruitForm(request):
+
+"""
     if request.method  == 'POST':
         data = request.POST
         t = tutor(
@@ -16,10 +30,12 @@ def recruitForm(request):
             )
         t.save()
     tutor_list = tutor.objects.all().order_by('firstname')
-    return render_to_response('person.html', {'tutor_list': tutor_list},context_instance=RequestContext(request))
+    if tutor_list:
+        return render_to_response('person.html', {'tutor_list': tutor_list},context_instance=RequestContext(request))
+    else:
+        return HttpResponse("<div>There is nothing</div>")
 
 
-"""
 def contents(request):
 	sample_list = Sample.objects.all().order_by('-date')
 #	output = ','.join([s.label for s in sample_list])

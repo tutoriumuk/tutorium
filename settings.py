@@ -4,8 +4,11 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+import os.path
+PRO_DIR = os.path.dirname(__file__)
+
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Jeffrey Tang', 'tutoriumUK@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -34,7 +37,6 @@ ALLOWED_HOSTS = []
 # system time zone.
 
 TIME_ZONE = 'Europe/London'
-TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -52,30 +54,33 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/home/tutoriumUK/mysite/static'
-MEDIA_ROOT = '/home/A1ultimA/tutorium/media'
+MEDIA_ROOT = os.path.join(PRO_DIR, "media")
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/static/'
 MEDIA_URL = '/media/'
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/tutoriumUK/mysite/static'
-STATIC_ROOT = '/home/A1ultimA/tutorium/static'
-
-# URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+#django built-in auth re-direct controller
+#if no specificied next place to go, go to root directory
+LOGIN_REDIRECT_URL = '/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
 ADMIN_MEDIA_PREFIX = '/static/admin/'
+
+
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/home/media/media.lawrence.com/static/"
+STATIC_ROOT = os.path.join(PRO_DIR, "static")
+
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
+STATIC_URL = '/static/'
+
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -111,7 +116,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'mysite.urls'
 ROOT_URLCONF = 'tutorium.urls'
 
 TEMPLATE_DIRS = (
@@ -128,11 +132,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tutorium.freezer',
-    'south',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    #'south',
+    'django.contrib.admin',
+    'django.contrib.admindocs',
 )
 
 # A sample logging configuration. The only tangible logging

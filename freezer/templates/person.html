@@ -33,23 +33,17 @@
     <hr>
     <h2>New Person</h2>
 
-    <form action="recruitForm" method="post">{% csrf_token %}
+    <form action="" method="POST">{% csrf_token %}
+
       <table>
-	<tr>
-	  <td>firstname: </th>
-	  <td><input type="text" name="firstname" /></td>
-	</tr>
-        <tr>
-          <td>lastname: </th>
-          <td><input type="text" name="lastname" /></td>
-        </tr>
-        <tr>
-          <td>email: </th>
-          <td><input type="text" name="email" /></td>
-        </tr>
+
+        {{ form.as_table }}
+
       </table>
+
       <p><input type="submit"></p>
       <p><input type="reset"</p>
+
     </form>
 
 
