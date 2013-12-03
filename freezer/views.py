@@ -2,20 +2,27 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response,RequestContext
 from tutorium.freezer.models import *
 from tutorium.freezer.forms import RecruitForm
+from django.core.mail import send_mail
+from django.contrib import auth
+from django.contrib.auth.forms import UserCreationForm
+
 
 def Recruit(request):
     form = RecruitForm(request.POST or None)
     if form.is_valid():
         form.save()
+        email = form.cleaned_data['email']
+        send_mail('Get started on TutoriumUK', 'You have successfully registered','tutoriumUK@gmail.com', [email], fail_silently=False)
 
     tutor_list = tutor.objects.all().order_by('firstname')
 
     if tutor_list:
-        return render_to_response('person.html', {'tutor_list': tutor_list},context_instance=RequestContext(request))
+        return render_to_response('person.html', {'tutor_list': tutor_list, 'form': form},context_instance=RequestContext(request))
     else:
         return HttpResponse("<div>There is nothing</div>")
 
 
+#def register
 
 """
     if request.method  == 'POST':
