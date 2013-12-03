@@ -112,13 +112,15 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware', #for storing login stuff at backend
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 ROOT_URLCONF = 'tutorium.urls'
 
 TEMPLATE_DIRS = (
+    os.path.join(PRO_DIR, "freezer/templates"),
+    os.path.join(PRO_DIR, "freezer/templates/registration"),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -132,10 +134,14 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tutorium.freezer',
+    'django.contrib.humanize',
     #'south',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'registration',
 )
+
+ACCOUNT_ACTIVATION_DAYS = 7
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -159,3 +165,11 @@ LOGGING = {
         },
     }
 }
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'tutoriumUK@gmail.com'
+EMAIL_HOST_PASSWORD = 'doordonot91'
+
